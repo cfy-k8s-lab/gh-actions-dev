@@ -33,8 +33,7 @@ jobs:
             "status": "queued",
             "output": {
               "title": "My Check 1 Title",
-              "summary": "This is a custom check that needs to pass before merging.",
-              "text": "Detailed information about the check."
+              "summary": "This is a custom check that needs to pass before merging."
             }
           }
           EOF
@@ -54,8 +53,7 @@ jobs:
             "status": "queued",
             "output": {
               "title": "My Check 2 Title",
-              "summary": "This is a custom check that needs to pass before merging.",
-              "text": "Detailed information about the check."
+              "summary": "This is a custom check that needs to pass before merging."
             }
           }
           EOF
