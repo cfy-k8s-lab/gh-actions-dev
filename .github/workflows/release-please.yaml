@@ -23,7 +23,7 @@ jobs:
   release-please:
     runs-on: ubuntu-latest
     env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.RELEASE_PLEASE_TOKEN }}
     outputs:
       organization: ${{ steps.repository.outputs.organization }}
       project: ${{ steps.repository.outputs.project }}
