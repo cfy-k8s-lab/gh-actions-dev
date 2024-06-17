@@ -14,11 +14,11 @@ permissions:
   pull-requests: write
 
 jobs:
-  pull-request-required-checks:
-    name: Pull request required checks
+  pull-request-required-checks-linting:
+    name: Linting code
     runs-on: ubuntu-latest
     steps:
-      - name: check 1
+      - name: linting
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -28,17 +28,21 @@ jobs:
           https://api.github.com/repos/${{ github.repository }}/check-runs \
           -d @- << EOF
           {
-            "name": "My Check 1",
+            "name": "Linting code",
             "head_sha": "${{ github.event.pull_request.head.sha }}",
             "status": "queued",
             "output": {
-              "title": "My Check 1 Title",
-              "summary": "This is a custom check that needs to pass before merging."
+              "title": "Linting code",
+              "summary": "Validace pomoci linting metody na cistotu kodu."
             }
           }
           EOF
 
-      - name: check 2
+  pull-request-required-checks-helmchart:
+    name: Validate helmchart
+    runs-on: ubuntu-latest
+    steps:
+      - name: helmchart valide
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -48,12 +52,12 @@ jobs:
           https://api.github.com/repos/${{ github.repository }}/check-runs \
           -d @- << EOF
           {
-            "name": "My Check 2",
+            "name": "Helmchart validate",
             "head_sha": "${{ github.event.pull_request.head.sha }}",
             "status": "queued",
             "output": {
-              "title": "My Check 2 Title",
-              "summary": "This is a custom check that needs to pass before merging."
+              "title": "Helmchart validate",
+              "summary": "Kontrola, zda lze helmchart renderovat"
             }
           }
           EOF
