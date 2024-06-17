@@ -6,7 +6,7 @@ on:
 
 jobs:
   release-please:
-    uses: .github/workflows/release-please.yaml
+    uses: ./.github/workflows/release-please.yaml
     secrets: inherit
 
   build:
