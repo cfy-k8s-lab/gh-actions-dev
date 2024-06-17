@@ -31,8 +31,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: check 1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "PR check 1"
+          PR_NUMBER=$(jq --raw-output .pull_request.number $GITHUB_EVENT_PATH)
+          curl -X POST -H "Authorization: token $GITHUB_TOKEN" \
+          -H "Accept: application/vnd.github.v3+json" \
+          https://api.github.com/repos/${{ github.repository }}/check-runs \
+          -d @- << EOF
+          {
+            "name": "My Check",
+            "head_sha": "${{ github.event.pull_request.head.sha }}",
+            "status": "in_progress",
+            "output": {
+              "title": "My Check Title",
+              "summary": "This is a custom check that needs to pass before merging.",
+              "text": "Detailed information about the check."
+            }
+          }
+          EOF
       - name: check 2
         run: |
           echo "PR check 2"
