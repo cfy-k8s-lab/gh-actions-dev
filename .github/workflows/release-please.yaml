@@ -1,0 +1,51 @@
+name: Releases please
+on:
+  workflow_call:
+    outputs:
+      organization:
+        description: "Organization (eg. folder in docker registry)"
+        value: ${{ jobs.release-please.outputs.organization }}
+      project:
+        description: "Project name (eg. container name)"
+        value: ${{ jobs.release-please.outputs.project }}
+      release_created:
+        description: "Is created release"
+        value: ${{ jobs.release-please.outputs.release_created }}
+      release_tag_name:
+        description: "Application release version"
+        value: ${{ jobs.release-please.outputs.release_tag_name }}
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    outputs:
+      organization: ${{ steps.repository.outputs.organization }}
+      project: ${{ steps.repository.outputs.project }}
+      release_created: ${{ steps.release-please.outputs.releases_created }}
+      release_tag_name: ${{ steps.release-please.outputs.tag_name }}
+
+    steps:
+      - name: Repository variables
+        id: repository
+        run: |
+          setOutput() {
+            echo "${1}=${2}" >> "$GITHUB_OUTPUT"
+          }
+
+          input="${{ github.repository }}"
+          read -r var1 var2 <<< "$(sed -E 's|(.*)/(.*)|\1 \2|' <<< "$input")"
+
+          setOutput organization ${var1,,}
+          setOutput project ${var2,,}
+          
+      - name: Release version variables
+        id: release-please
+        uses: googleapis/release-please-action@v4
+        with:
+          release-type: simple
