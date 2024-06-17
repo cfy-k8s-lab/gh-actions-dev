@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/cfy-k8s-lab/gh-actions-dev/compare/v1.0.0...v1.1.0) (2024-06-17)
+
+
+### Features
+
+* **main:** Test ([#17](https://github.com/cfy-k8s-lab/gh-actions-dev/issues/17)) ([c3642fd](https://github.com/cfy-k8s-lab/gh-actions-dev/commit/c3642fd724458cb26f5456bc36ea9c92f6b27459))
+
 ## 1.0.0 (2024-06-17)
 
 
