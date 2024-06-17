@@ -1,2 +1,4 @@
 # gh-actions-dev
-Vetev pro vytvareni pull-requestu
+Vytvareni a debug idealniho workflow pro release projektu
+
+zmena 1
