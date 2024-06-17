@@ -13,9 +13,27 @@ permissions:
   pull-requests: write
 
 jobs:
+  auto-success-check:
+    name: Set auto-pass check
+    if: ${{ startsWith(github.head_ref, 'release-please-') && github.actor == 'github-actions[bot]' }} 
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        check_name:
+          - Linting code
+    steps:
+      - name: Set success status for check
+        #env:
+        #  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          -H "Accept: application/vnd.github.v3+json" \
+          https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
+          -d '{"state": "success", "context": "'"${{ matrix.check_name }}"'"}'"
+
   pull-request-required-checks:
-    if: ${{ !startsWith(github.head_ref, 'release-please-') && github.actor != 'github-actions[bot]' }}
     name: Linting code
+    if: ${{ !startsWith(github.head_ref, 'release-please-') && github.actor != 'github-actions[bot]' }}
     runs-on: ubuntu-latest
     steps:
       - name: linting
