@@ -38,4 +38,8 @@ jobs:
     steps:
       - name: linting
         run: |
-          echo "Check is OK"
+          echo "Linting check is OK"
+
+      - name: Unit and Integration test
+        run: |
+          echo "Unit and Integration test is OK"

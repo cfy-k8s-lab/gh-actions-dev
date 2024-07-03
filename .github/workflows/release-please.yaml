@@ -35,10 +35,8 @@ jobs:
           setOutput() {
             echo "${1}=${2}" >> "$GITHUB_OUTPUT"
           }
-
           input="${{ github.repository }}"
           read -r var1 var2 <<< "$(sed -E 's|(.*)/(.*)|\1 \2|' <<< "$input")"
-
           setOutput organization ${var1,,}
           setOutput project ${var2,,}
           
