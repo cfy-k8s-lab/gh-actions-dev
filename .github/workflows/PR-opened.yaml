@@ -21,6 +21,7 @@ jobs:
       matrix:
         check_name:
           - Linting code
+          - Unit and Integration test
     steps:
       - name: Set success status for check
         #env:
