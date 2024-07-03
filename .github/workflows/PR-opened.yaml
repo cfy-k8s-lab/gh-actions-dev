@@ -20,8 +20,7 @@ jobs:
     strategy:
       matrix:
         check_name:
-          - Linting code
-          - Unit and Integration test
+          - Testing
     steps:
       - name: Set success status for check
         #env:
@@ -33,14 +32,16 @@ jobs:
           -d '{"state": "success", "context": "'"${{ matrix.check_name }}"'"}'"
 
   pull-request-required-checks:
-    name: Linting code
+    name: Testing
     if: ${{ !startsWith(github.head_ref, 'release-please-') && github.actor != 'github-actions[bot]' }}
     runs-on: ubuntu-latest
     steps:
       - name: linting
         run: |
           echo "Linting check is OK"
-
-      - name: Unit and Integration test
+      - name: unit test
         run: |
-          echo "Unit and Integration test is OK"
+          echo "Unit test is OK"
+      - name: integration test
+        run: |
+          echo "Integration test is OK"
