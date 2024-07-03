@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.1.0](https://github.com/cfy-k8s-lab/gh-actions-dev/compare/v1.0.0...v1.1.0) (2024-07-03)
+
+
+### Features
+
+* **main:** Test ([#17](https://github.com/cfy-k8s-lab/gh-actions-dev/issues/17)) ([c3642fd](https://github.com/cfy-k8s-lab/gh-actions-dev/commit/c3642fd724458cb26f5456bc36ea9c92f6b27459))
+* **main:** Test ([#21](https://github.com/cfy-k8s-lab/gh-actions-dev/issues/21)) ([5ccf6c4](https://github.com/cfy-k8s-lab/gh-actions-dev/commit/5ccf6c4520f49cf1b5086f8d1ee84bd5d2403e0d))
+* **main:** Test ([#23](https://github.com/cfy-k8s-lab/gh-actions-dev/issues/23)) ([aa75868](https://github.com/cfy-k8s-lab/gh-actions-dev/commit/aa758687e8b28c82c8ec82901074f37418227c2d))
+
+
+### Bug Fixes
+
+* **main:** Zmena 4 ([#28](https://github.com/cfy-k8s-lab/gh-actions-dev/issues/28)) ([0e7396d](https://github.com/cfy-k8s-lab/gh-actions-dev/commit/0e7396d6c8d8d2aead0f9be54ca4fa425b20fd69))
+
 ## 1.0.0 (2024-06-17)
 
 
